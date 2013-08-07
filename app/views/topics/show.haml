@@ -1,0 +1,18 @@
+-# encoding:utf-8
+- @title = @topic.title
+
+#show
+  %h2= @topic.title
+  %p= simple_format @topic.body
+  %p Posted By #{name_or_you @topic.account}
+  %p Created At #{time_ago_in_words @topic.created_at}
+  - if @topic.updated_once?
+    %p Updated At #{time_ago_in_words @topic.updated_at}
+
+  #comments
+    %h3 コメント（#{@topic.comments.length} 件）
+    - @topic.comments.each do |c|
+      %p 投稿者 #{c.account ? c.account : 'anonymouse'}
+      %p= simple_format c.body
+
+  %p= link_to "一覧へ戻る", url(:topics, :index)

@@ -1,0 +1,11 @@
+-# encoding:utf-8
+- @title = nil
+
+#index
+  - @topics.each do |t|
+    %h2= link_to t.title, url_for(:topics, :show, :id => t)
+    %p= simple_format t.body
+    %p 投稿者: #{name_or_you t.account}
+    %p 作成日時: #{t.created_at}
+    %p コメント（#{t.comments.length}）
+    %hr

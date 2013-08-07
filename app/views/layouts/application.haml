@@ -1,0 +1,21 @@
+-# encoding:utf-8
+!!! 5
+%html
+  %head
+    %meta{ lang: 'utf-8' }
+    %title= [@title, "PadrinoBBS"].compact.join(" | ")
+    = stylesheet_link_tag 'main'
+    = javascript_include_tag 'main'
+    = yield_content :header
+  %body
+    #header
+      %h1 Padrino で BBS
+      %p Hello, #{if logged_in? then current_account.name else "anonymous" end}
+      - if logged_in?
+        %p= link_to "logout", url(:session, :destroy)
+      - else
+        %p= link_to "login", url(:session, :new)
+    #container
+      #main= yield
+    #footer
+      %p Copyright (c) #{Time.now.year} Keiichiro Ui

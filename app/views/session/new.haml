@@ -1,0 +1,21 @@
+-# encoding:utf-8
+!!! 5
+%html
+  %head
+    %meta{ lang: 'utf-8' }
+    %title= [@title, "PadrinoBBS"].compact.join(" | ")
+    = stylesheet_link_tag 'main'
+    = javascript_include_tag 'main'
+    = yield_content :header
+  %body
+    - [:error, :warning, :notice].each do |type|
+      = flash_tag(type, :class => "alert alert-#{type} fade in", :bootstrap => true).html_safe
+    - form_tag url(:session, :create), :method => 'POST' do
+      %fieldset
+        %label= "Mail"
+        = email_field_tag :email, :value => params[:email], :autofocus => true
+      %fieldset
+        %label= "Password"
+        = password_field_tag :password, :value => params[:password]
+
+      = submit_tag "submit"

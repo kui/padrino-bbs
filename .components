@@ -1,0 +1,10 @@
+---
+:orm: activerecord
+:test: rspec
+:mock: mocha
+:script: jquery
+:renderer: haml
+:stylesheet: compass
+:namespace: Bbs
+:migration_format: number
+:admin_renderer: haml
